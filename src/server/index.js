@@ -1,24 +1,28 @@
 const dotenv = require('dotenv');
+const path = require('path')
+const express = require('express')
+const mockAPIResponse = require('./mockAPI.js')
+const aylien = require('aylien_textapi')
+const bodyparser = require('body-parser');
+const cors = require('cors');
+
 dotenv.config();
 console.log(`Your APP ID is ${process.env.API_ID}`);
 console.log(`Your API key is ${process.env.API_KEY}`);
 
-var path = require('path')
-const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
-var aylien = require('aylien_textapi');
-var textapi = new aylien({
+const textapi = new aylien({
     application_id: process.env.API_ID,
     application_key: process.env.API_KEY
 });
 
-
-
 // https://api.aylien.com/api/v1
 
 const app = express()
-
 app.use(express.static('dist'))
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+// Cors for cross origin allowance
+app.use(cors());
 
 console.log(__dirname)
 
