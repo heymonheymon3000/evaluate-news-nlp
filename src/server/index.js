@@ -13,7 +13,7 @@ const textapi = new aylien({
 });
 
 const app = express()
-app.use(express.static('../../dist'))
+app.use(express.static(path.resolve('../../dist')))
 app.use(bodyparser.urlencoded({ extended: false }))
 app.use(bodyparser.json())
 app.use(cors());
@@ -29,3 +29,17 @@ app.listen(3000, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
+app.post('/textapi', async (req, res, next) => {
+    try {
+      textapi.sentiment({
+        'text': req.body.text
+      }, function(error, response) {
+        if (error === null) {
+          res.send(response);
+        }
+      });           
+    } catch(error) {
+      return next(error)
+    }
+  })

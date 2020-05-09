@@ -5,11 +5,31 @@ function handleSubmit(event) {
     let formText = document.getElementById('name').value
     Client.checkForName(formText)
 
-    fetch('http://localhost:3000/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
+    fetchTextApi(formText)
+    .then(function(data) {
+        document.getElementById('results').innerHTML = data.polarity
     })
 }
 
-export { handleSubmit }
+async function fetchTextApi(input) {
+    const response = await fetch('http://localhost:3000/textapi', {
+        mode: "cors",
+        cache: "no-cache",
+        credentials: "same-origin",
+        method: 'POST',
+        body: JSON.stringify({
+            text: input
+        }),
+        headers: {"Content-Type": "application/json"}
+    })
+
+    try {
+        const text = await response.json()
+        console.log(text)
+        return text
+    } catch(error) {
+        console.log('error',error)
+    }
+}
+
+export { handleSubmit, fetchTextApi }
