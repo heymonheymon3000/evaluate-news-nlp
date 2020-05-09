@@ -1,3 +1,5 @@
+import { fetch } from 'node-fetch';
+
 function handleSubmit(event) {
     event.preventDefault()
 

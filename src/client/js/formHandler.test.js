@@ -17,4 +17,3 @@ describe('Test, the function "fetchTextApi()" should exist', () => {
         expect(fetchTextApi).toBeDefined();
     });
 });
-
