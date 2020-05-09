@@ -1,0 +1,8 @@
+$font-size: 2em;
+
+footer {
+    display: grid;
+    font-size: $font-size;
+    justify-content: center;
+    align-content: center;
+}

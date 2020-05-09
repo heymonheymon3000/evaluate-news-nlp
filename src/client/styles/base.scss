@@ -1,7 +1,10 @@
+$font-size: 2em;
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
 }
 
 main {
@@ -11,4 +14,10 @@ main {
 section {
     max-width: 800px;
     margin: 50px auto;
+    font-size: $font-size;
+
+    div#results {
+        font-style: italic;
+        color: lightcoral;
+    }
 }
