@@ -1,6 +1,6 @@
 form {
     border: 1px solid #545454;
-    border-radius: 3px;
+    border-radius: 8px;
     padding: 40px;
 
     &.form {
@@ -14,4 +14,8 @@ input {
     width: 100%;
     line-height: 16px;
     margin: 10px 0;
+
+    &[type="submit"] {
+        background-color: green;
+    }
 }

@@ -1,5 +1,3 @@
-import { fetch } from 'node-fetch';
-
 function handleSubmit(event) {
     event.preventDefault()
 
@@ -27,11 +25,18 @@ async function fetchTextApi(input) {
 
     try {
         const text = await response.json()
-        console.log(text)
         return text
     } catch(error) {
         console.log('error',error)
     }
 }
 
-export { handleSubmit, fetchTextApi }
+// mock call
+function fetchTextApiTest(input) {
+    return new Promise((resolve, reject) => {
+        process.nextTick(() =>
+        resolve({text: 'positive'}));
+    });
+}
+
+export { handleSubmit, fetchTextApi, fetchTextApiTest }
